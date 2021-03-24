@@ -1,7 +1,7 @@
 <!--
  * @Author: wgj
  * @Date: 2021-03-22 19:38:41
- * @LastEditTime: 2021-03-24 18:19:57
+ * @LastEditTime: 2021-03-24 18:39:13
  * @LastEditors: wgj
  * @Description:
 -->
@@ -32,6 +32,6 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
+<!-- ### Customize configuration
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/). -->
