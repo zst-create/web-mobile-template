@@ -5,6 +5,7 @@ const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 const path = require('path')
 const resolve = dir => path.join(__dirname, dir)
+// const themePath = path.resolve(__dirname, "./src/assets/css/resetThem.less");
 module.exports = {
   // 基本路径
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
@@ -88,6 +89,9 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
+    types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
+
     // config.module
     //   .rule('images')
     //   .use('image-webpack-loader')
@@ -104,23 +108,48 @@ module.exports = {
         })*/
   },
   // css相关配置
+  // css: {
+  //   // 启用 CSS modules
+  //   requireModuleExtension: true,
+  //   // 是否使用css分离插件
+  //   // extract: false,
+  //   extract: IS_PROD,
+  //   // 开启 CSS source maps?
+  //   sourceMap: false,
+  //   // css预设器配置项
+  //   loaderOptions: {
+  //     // sass: {
+  //     //   prependData:
+  //     //     `@import "@/assets/css/reset.scss";      
+  //     //      @import "@/assets/css/mixin.scss";
+  //     //      @import "@/assets/css/variables.scss";`
+  //     // },
+  //   },
+  // },
+  // css相关配置
   css: {
-    // 启用 CSS modules
+    // 启用 CSS modules
     requireModuleExtension: true,
-    // 是否使用css分离插件
-    // extract: false,
-    extract: IS_PROD,
-    // 开启 CSS source maps?
+    // 是否使用css分离插件
+    extract: false,
+    // 开启 CSS source maps?
     sourceMap: false,
-    // css预设器配置项
+    // css预设器配置项
     loaderOptions: {
-      sass: {
-        prependData:
-          `@import "@/assets/css/reset.scss";      
-           @import "@/assets/css/mixin.scss";
-           @import "@/assets/css/variables.scss";`
+      less: {
+        modifyVars: {
+          // less 文件覆盖（文件路径为绝对路径）
+          'hack': `true; @import "${resolve('./src/assets/css/resetThem.less')}";`
+
+        },
+        // modifyVars: {
+        //   hack: `true; @import "${themePath}";`
+        //   // hack: `true; @import "~@/assets/css/resetThem.less";`,
+        // },
+        javascriptEnabled: true
       }
-    },
+    }
+
   },
   // webpack-dev-server 相关配置
   devServer: {
@@ -137,8 +166,27 @@ module.exports = {
   pwa: {},
 
   // 第三方插件配置
-  pluginOptions: {
-    // ...
+  // pluginOptions: {
+  //   // ...
 
-  }
+  // },
+  // pluginOptions: {
+
+  // }
+  // pluginOptions: {
+  //   "style-resources-loader": {
+  //     preProcessor: "less",
+  //     patterns: [path.resolve(__dirname, "./src/assets/css/resetThem.less")]
+  //   }
+  // },
+
+}
+function addStyleResource(rule) {
+  rule.use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [
+        path.resolve(__dirname, './src/assets/css/reset.less'), // 需要全局导入的less
+      ],
+    })
 }

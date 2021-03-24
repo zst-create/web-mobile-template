@@ -1,14 +1,28 @@
+<!--
+ * @Author: wgj
+ * @Date: 2021-03-22 19:40:55
+ * @LastEditTime: 2021-03-24 09:40:13
+ * @LastEditors: wgj
+ * @Description: 
+-->
+<!--
+ * @Author: wgj
+ * @Date: 2021-03-22 19:40:55
+ * @LastEditTime: 2021-03-24 09:39:48
+ * @LastEditors: wgj
+ * @Description: 
+-->
 <template>
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-<style lang="scss">
+<style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

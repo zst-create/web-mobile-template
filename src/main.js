@@ -1,7 +1,7 @@
 /*
  * @Author: wgj
  * @Date: 2021-03-22 10:26:34
- * @LastEditTime: 2021-03-22 20:14:10
+ * @LastEditTime: 2021-03-24 13:18:44
  * @LastEditors: wgj
  * @Description: 
  */
@@ -11,8 +11,13 @@ import router from './router'
 import store from './store'
 import '@/icons' // icon
 import VConsole from "vconsole/dist/vconsole.min.js";
+
 import Vant from 'vant';
 import 'vant/lib/index.css';
+// 引入全部样式
+import 'vant/lib/index.less';
+
+
 Vue.use(Vant);
 // 移动端适配
 // import 'lib-flexible/flexible.js'
