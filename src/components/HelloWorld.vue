@@ -1,8 +1,15 @@
+<!--
+ * @Author: wgj
+ * @Date: 2021-03-22 19:40:55
+ * @LastEditTime: 2021-03-24 15:41:37
+ * @LastEditors: wgj
+ * @Description: 
+-->
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br>
+      For a guide and recipes on how to configure / customize this project,<br />
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
@@ -36,13 +43,13 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped lang="less">
 h3 {
   margin: 40px 0 0;
 }
