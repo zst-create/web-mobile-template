@@ -9,7 +9,8 @@
     "alpha": "vue-cli-service build --mode alpha && cordova-hcp build dist",
     "test:unit": "vue-cli-service test:unit",
     "alpha1": "vue-cli-service build --mode alpha && cd ../cordova-teacher && cordova build android --release && jarsigner -verbose -keystore gfy.keystore -signedjar gfy_signed.apk D:\\gfy\\cordova-teacher\\platforms\\android\\app\\build\\outputs\\apk\\release\\app-release-unsigned.apk gfy",
-    "sit": "vue-cli-service build --mode sit"
+    "sit": "vue-cli-service build --mode sit",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.4",

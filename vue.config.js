@@ -2,6 +2,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 // const CompressionWebpackPlugin = require('compression-webpack-plugin');
 // const productionGzipExtensions = ['js', 'css'];
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 const path = require('path')
 const resolve = dir => path.join(__dirname, dir)
@@ -89,6 +90,14 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+    // 打包分析
+    // if (IS_PROD) {
+    //   config.plugin('webpack-report').use(BundleAnalyzerPlugin, [
+    //     {
+    //       analyzerMode: 'static'
+    //     }
+    //   ])
+    // }
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => addStyleResource(config.module.rule('less').oneOf(type)))
 
