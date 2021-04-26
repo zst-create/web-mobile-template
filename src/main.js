@@ -1,7 +1,7 @@
 /*
  * @Author: wgj
  * @Date: 2021-03-22 10:26:34
- * @LastEditTime: 2021-03-31 12:55:19
+ * @LastEditTime: 2021-04-02 16:05:29
  * @LastEditors: wgj
  * @Description: 
  */
@@ -27,7 +27,6 @@ import * as filters from './filters' // 全局过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
-Vue.use(Vant);
 // 移动端适配
 // import 'lib-flexible/flexible.js'
 

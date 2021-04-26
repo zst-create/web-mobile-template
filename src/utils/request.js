@@ -1,8 +1,34 @@
+/*
+ * @Author: wgj
+ * @Date: 2021-04-20 14:04:58
+ * @LastEditTime: 2021-04-25 10:38:20
+ * @LastEditors: wgj
+ * @Description: 
+ */
 import Vue from "vue";
 import axios from "axios";
 import { Toast } from "vant";
+import store from "../store";
+// import _ from 'lodash';
 Vue.use(Toast);
 const baseUrl = process.env.VUE_APP_BASE_URL;
+let loading_count = 0; //请求计数器
+
+function startLoading() {
+    if (loading_count == 0) {
+        store.dispatch('showLoading', true)
+    }
+    //请求计数器
+    loading_count++;
+}
+
+function endLoading() {
+    loading_count--;//只要进入这个函数，计数器就自减，直到。。
+    if (loading_count <= 0) {
+        store.dispatch('showLoading', false)
+    }
+}
+
 // axios.defaults.baseURL = baseUrl;
 // axios.defaults.withCredentials = false;
 // axios.defaults.timeout = 6000;
@@ -11,6 +37,7 @@ const service = axios.create({
     withCredentials: false, // send cookies when cross-domain requests
     timeout: 6000 // request timeout
 })
+
 // Add a request interceptor
 service.interceptors.request.use(
     (config) => {
@@ -19,10 +46,12 @@ service.interceptors.request.use(
         } else {
             config.url = config.url + "&t=" + new Date().getTime().toString();
         }
+        startLoading()
 
         return config;
     },
     (error) => {
+        endLoading()
         // Do something with request error
         return Promise.reject(error);
     }
@@ -31,6 +60,8 @@ service.interceptors.request.use(
 // Add a response interceptor
 service.interceptors.response.use(
     (response) => {
+        // store.dispatch('showLoading', false)
+        endLoading()
         return response.data;
     },
     (error) => {
@@ -74,14 +105,12 @@ service.interceptors.response.use(
                     error.message = `连接出错(${error.response.status})!`;
             }
             Toast(error.message);
-        }
-
-        else {
+        } else {
             error.message = "网络异常，请稍后重试";
         }
 
         Toast(error.message);
-        // store.commit("setVanLoading", false)
+        endLoading()
         return Promise.reject(error);
     }
 );

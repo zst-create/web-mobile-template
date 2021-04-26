@@ -1,7 +1,7 @@
 /*
  * @Author: wgj
  * @Date: 2021-03-22 19:40:55
- * @LastEditTime: 2021-03-25 17:09:31
+ * @LastEditTime: 2021-04-25 10:46:06
  * @LastEditors: wgj
  * @Description: 
  */
@@ -14,7 +14,11 @@ let routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+        showMenu: true,
+        index:0
+    },
   },
 ]
 files.keys().forEach(key => {
