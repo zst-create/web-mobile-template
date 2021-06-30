@@ -1,7 +1,7 @@
 /*
  * @Author: wgj
  * @Date: 2021-03-22 10:26:34
- * @LastEditTime: 2021-04-02 16:05:29
+ * @LastEditTime: 2021-04-28 16:12:13
  * @LastEditors: wgj
  * @Description: 
  */
@@ -27,6 +27,18 @@ import * as filters from './filters' // 全局过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+
+//集成环境或者正式环境才收集错误信息
+import * as fundebug from "fundebug-javascript";
+import fundebugVue from "fundebug-vue";
+if (process.env.NODE_ENV == "production"|| process.env.NODE_ENV == "sit") {
+  fundebug.init({
+    apikey: "c34f2bef2d5eb9b0602c258636082bd31453e96f40a837de256cd9e289bcee50",
+    silentDev: false,
+    silentConsole: true
+  })
+  fundebugVue(fundebug, Vue);
+}
 // 移动端适配
 // import 'lib-flexible/flexible.js'
 

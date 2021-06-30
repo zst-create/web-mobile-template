@@ -16,6 +16,8 @@
     "@tailwindcss/postcss7-compat": "^2.0.4",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "fundebug-javascript": "^2.5.0",
+    "fundebug-vue": "0.0.1",
     "lib-flexible": "^0.3.2",
     "postcss": "^7.0.35",
     "postcss-pxtorem": "^5.1.1",

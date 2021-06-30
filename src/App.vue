@@ -1,7 +1,7 @@
 <!--
  * @Author: wgj
  * @Date: 2021-03-22 19:40:55
- * @LastEditTime: 2021-04-25 10:43:40
+ * @LastEditTime: 2021-06-10 10:24:31
  * @LastEditors: wgj
  * @Description: 
 -->
@@ -18,15 +18,16 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-       <footer-menu v-if="showMenu" />
-      <transition name="fade">
-        <loading v-if="this.$store.getters.getIsLoading"></loading>
-      </transition>
-      <transition :mode="mode" :name="transitionName">
-        <router-view class="center"></router-view>
-      </transition>
+    <footer-menu v-if="showMenu" />
+    <transition name="fade">
+      <loading v-if="this.$store.getters.getIsLoading"></loading>
+    </transition>
+    <transition :mode="mode" :name="transitionName">
+      <router-view class="center"></router-view>
+    </transition>
   </div>
 </template>
+
 <script>
 // @ is an alias to /src
 import footerMenu from '@/components/footerMenu.vue';
@@ -71,6 +72,7 @@ export default {
   },
 };
 </script>
+
 <style lang="less">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
